@@ -1,1 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omalbushra Construction Company — Built to Last</title>
+<meta name="description" content="Omalbushra Construction Company — foundations, framing, renovation and full-scale builds, engineered with precision.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-light:#ECE8E0;
+    --bg-panel:#DFDACF;
+    --ink:#1C1F22;
+    --charcoal:#1D2124;
+    --charcoal-2:#262B2F;
+    --steel:#6B7178;
+    --line:#C6C0B2;
+    --line-dark:#3A4045;
+    --orange:#E1571C;
+    --blue:#2C4A6E;
+    --cream:#F4F1E9;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-light);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Big Shoulders Display',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    line-height:0.95;
+    font-weight:900;
+  }
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
 
+  /* corner-bracket signature element */
+  .bracketed{position:relative; padding:28px;}
+  .bracketed::before, .bracketed::after,
+  .bracketed .bl, .bracketed .br{
+    content:""; position:absolute; width:18px; height:18px;
+    border-color:var(--orange); border-style:solid; border-width:0;
+  }
+  .bracketed::before{ top:0; left:0; border-top-width:2px; border-left-width:2px; }
+  .bracketed::after{ top:0; right:0; border-top-width:2px; border-right-width:2px; }
+  .bracketed .bl{ bottom:0; left:0; border-bottom-width:2px; border-left-width:2px; }
+  .bracketed .br{ bottom:0; right:0; border-bottom-width:2px; border-right-width:2px; }
+
+  /* dimension line */
+  .dim{
+    display:flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono',monospace; font-size:12px;
+    letter-spacing:0.08em; color:var(--steel); text-transform:uppercase;
+    margin:14px 0;
+  }
+  .dim::before, .dim::after{ content:""; flex:1; height:1px; background:var(--line-dark); }
+  .dim.light::before, .dim.light::after{ background:var(--line); }
+  .dim.light{ color:var(--steel); }
+
+  /* NAV */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(29,33,36,0.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-dark);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:1180px; margin:0 auto; padding:16px 32px;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo-mark{
+    width:34px; height:34px; border:2px solid var(--orange);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Big Shoulders Display',sans-serif; font-weight:900;
+    color:var(--orange); font-size:15px; flex-shrink:0;
+  }
+  .logo-text{ color:var(--cream); font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:16px; letter-spacing:0.02em; text-transform:uppercase; line-height:1.1;}
+  .logo-text span{ display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--orange); letter-spacing:0.15em; font-weight:400; margin-top:2px;}
+  .nav-links{ display:flex; gap:36px; list-style:none; }
+  .nav-links a{
+    color:var(--cream); font-family:'IBM Plex Mono',monospace; font-size:12px;
+    letter-spacing:0.1em; text-transform:uppercase; position:relative; padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; bottom:0; left:0; width:0; height:1px;
+    background:var(--orange); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    background:var(--orange); color:var(--charcoal); padding:9px 18px;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em;
+    text-transform:uppercase; font-weight:500;
+  }
+  .menu-btn{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
+  .menu-btn span{ width:22px; height:2px; background:var(--cream); display:block; }
+  .mobile-nav{ display:none; flex-direction:column; gap:0; background:var(--charcoal-2); border-top:1px solid var(--line-dark);}
+  .mobile-nav a{ color:var(--cream); font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; padding:16px 32px; border-bottom:1px solid var(--line-dark);}
+  .mobile-nav.open{ display:flex; }
+  @media(max-width:860px){
+    .nav-links, .nav-cta{ display:none; }
+    .menu-btn{ display:flex; }
+  }
+
+  /* HERO */
+  .hero{
+    background:var(--charcoal);
+    color:var(--cream);
+    padding:170px 0 0 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .blueprint-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line-dark) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-dark) 1px, transparent 1px);
+    background-size:44px 44px;
+    opacity:0.35;
+    mask-image:linear-gradient(to bottom, black, transparent 85%);
+  }
+  .hero-inner{ position:relative; z-index:2; padding-bottom:0;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.18em;
+    color:var(--orange); text-transform:uppercase; margin-bottom:22px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:""; width:26px; height:1px; background:var(--orange); }
+  .hero h1{
+    font-size:clamp(48px, 9vw, 108px);
+    max-width:900px;
+  }
+  .hero h1 em{ font-style:normal; color:var(--orange); }
+  .hero-sub{
+    max-width:520px; color:#B9BDC2; font-size:17px; margin-top:26px; margin-bottom:40px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:70px;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.08em;
+    text-transform:uppercase; padding:16px 28px; display:inline-block; border:1px solid transparent;
+  }
+  .btn-primary{ background:var(--orange); color:var(--charcoal); font-weight:500;}
+  .btn-primary:hover{ background:#c94a15; }
+  .btn-ghost{ border-color:var(--line-dark); color:var(--cream); }
+  .btn-ghost:hover{ border-color:var(--orange); color:var(--orange); }
+
+  .skyline{ position:relative; z-index:2; width:100%; display:block; }
+
+  /* stats strip */
+  .stats{
+    background:var(--charcoal-2); border-top:1px solid var(--line-dark);
+    position:relative; z-index:2;
+  }
+  .stats-grid{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    max-width:1180px; margin:0 auto;
+  }
+  .stat{
+    padding:34px 32px; border-right:1px solid var(--line-dark);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat .num{ font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:40px; color:var(--orange); line-height:1;}
+  .stat .label{ font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--steel); text-transform:uppercase; margin-top:8px;}
+  @media(max-width:760px){
+    .stats-grid{ grid-template-columns:repeat(2,1fr); }
+    .stat{ border-bottom:1px solid var(--line-dark); }
+  }
+
+  /* SECTION generic */
+  section{ padding:110px 0; }
+  .section-head{ margin-bottom:56px; max-width:640px; }
+  .section-head h2{ font-size:clamp(34px,5vw,56px); }
+  .section-head p{ color:var(--steel); font-size:16px; margin-top:16px; max-width:520px;}
+
+  /* ABOUT */
+  #about{ background:var(--bg-light); }
+  .about-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:70px; align-items:start;
+  }
+  .about-text p{ color:#3C3F42; font-size:16px; margin-bottom:18px; max-width:520px; }
+  .about-text p.lead{ font-size:20px; color:var(--ink); font-weight:500; }
+  .spec-panel{ background:var(--charcoal); color:var(--cream); padding:36px; }
+  .spec-row{ display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--line-dark); font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.04em;}
+  .spec-row:last-child{ border-bottom:none; }
+  .spec-row span:first-child{ color:var(--steel); text-transform:uppercase; letter-spacing:0.1em; font-size:11px;}
+  .spec-row span:last-child{ color:var(--cream); text-align:right; }
+  @media(max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
+
+  /* SERVICES */
+  #services{ background:var(--charcoal); color:var(--cream); }
+  #services .section-head p{ color:#9FA5AB; }
+  .services-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line-dark);
+  }
+  .service-card{
+    background:var(--charcoal-2); padding:38px 30px; position:relative;
+  }
+  .service-num{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--orange); margin-bottom:26px; display:block;}
+  .service-icon{ margin-bottom:24px; }
+  .service-card h3{ font-size:24px; margin-bottom:12px; color:var(--cream); }
+  .service-card p{ color:#9FA5AB; font-size:14.5px; }
+  @media(max-width:860px){ .services-grid{ grid-template-columns:1fr; } }
+
+  /* PROCESS strip */
+  #process{ background:var(--bg-panel); }
+  .process-list{ list-style:none; }
+  .process-item{
+    display:grid; grid-template-columns:90px 1fr; gap:24px;
+    padding:26px 0; border-top:1px solid var(--line);
+    align-items:baseline;
+  }
+  .process-list li:last-child{ border-bottom:1px solid var(--line); }
+  .process-item .pnum{ font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:34px; color:var(--orange);}
+  .process-item h4{ font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:20px; text-transform:uppercase; margin-bottom:6px;}
+  .process-item p{ color:var(--steel); font-size:14.5px; max-width:480px;}
+
+  /* CONTACT */
+  #contact{ background:var(--bg-light); }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+  .contact-card{ background:var(--charcoal); color:var(--cream); padding:44px; }
+  .contact-card h3{ font-size:28px; margin-bottom:22px; }
+  .contact-line{ display:flex; flex-direction:column; padding:18px 0; border-top:1px solid var(--line-dark); }
+  .contact-line:last-child{ padding-bottom:0; }
+  .contact-line .k{ font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); margin-bottom:6px;}
+  .contact-line .v{ font-size:17px; }
+  .contact-line a.v:hover{ color:var(--orange); }
+  .contact-note{ padding:44px; border:1px solid var(--line); }
+  .contact-note p{ color:#3C3F42; font-size:15.5px; margin-bottom:16px;}
+  .hours-row{ display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:13px; padding:10px 0; border-bottom:1px solid var(--line);}
+  .hours-row span:first-child{ color:var(--steel); text-transform:uppercase; letter-spacing:0.06em;}
+  @media(max-width:860px){ .contact-grid{ grid-template-columns:1fr; } }
+
+  /* FOOTER */
+  footer{ background:var(--charcoal); color:#9FA5AB; padding:50px 0 30px; border-top:1px solid var(--line-dark);}
+  .footer-top{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; padding-bottom:34px; border-bottom:1px solid var(--line-dark); margin-bottom:24px;}
+  .footer-links{ display:flex; gap:28px; flex-wrap:wrap; list-style:none; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;}
+  .footer-links a:hover{ color:var(--orange); }
+  .footer-bottom{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.05em; color:var(--steel);}
+
+  /* PRIVACY POLICY */
+  #privacy{ background:var(--cream); padding-top:150px; }
+  #privacy .wrap{ max-width:800px; }
+  #privacy h2{ font-size:clamp(30px,5vw,48px); margin-bottom:8px;}
+  #privacy .updated{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--steel); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:44px; display:block;}
+  #privacy h3{ font-family:'Big Shoulders Display',sans-serif; font-weight:700; font-size:20px; text-transform:uppercase; margin:34px 0 10px;}
+  #privacy p, #privacy li{ color:#3C3F42; font-size:15px; margin-bottom:12px; }
+  #privacy ul{ padding-left:20px; margin-bottom:16px;}
+  #privacy .back-link{ font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--orange); display:inline-block; margin-bottom:40px;}
+
+  ::selection{ background:var(--orange); color:var(--charcoal); }
+  :focus-visible{ outline:2px solid var(--orange); outline-offset:3px; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#home" class="logo">
+      <div class="logo-mark">OB</div>
+      <div class="logo-text">Omalbushra<span>Construction Co.</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="blueprint-grid" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Est. Foundations to Finish</div>
+    <h1>We build what <em>lasts.</em></h1>
+    <p class="hero-sub">Omalbushra Construction Company plans, engineers and builds — from poured foundations to finished handover — with the tolerances of a blueprint and the accountability of a handshake.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary">Request a Quote</a>
+      <a href="#services" class="btn btn-ghost">View Our Work</a>
+    </div>
+  </div>
+
+  <svg class="skyline" viewBox="0 0 1180 130" preserveAspectRatio="none" aria-hidden="true">
+    <rect x="0" y="0" width="1180" height="130" fill="#1D2124"/>
+    <g fill="none" stroke="#3A4045" stroke-width="1">
+      <rect x="60" y="30" width="70" height="100"/>
+      <rect x="150" y="55" width="50" height="75"/>
+      <rect x="220" y="10" width="90" height="120"/>
+      <line x1="220" y1="10" x2="310" y2="130" stroke="#E1571C" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <rect x="340" y="70" width="40" height="60"/>
+      <rect x="410" y="45" width="60" height="85"/>
+      <rect x="500" y="20" width="80" height="110"/>
+      <rect x="610" y="60" width="45" height="70"/>
+      <line x1="655" y1="60" x2="720" y2="20" stroke-width="1"/>
+      <line x1="720" y1="20" x2="720" y2="130" stroke-width="1"/>
+      <rect x="760" y="35" width="70" height="95"/>
+      <rect x="850" y="65" width="55" height="65"/>
+      <rect x="930" y="15" width="85" height="115"/>
+      <rect x="1040" y="50" width="60" height="80"/>
+      <rect x="1120" y="75" width="40" height="55"/>
+    </g>
+    <g stroke="#E1571C" stroke-width="1.5">
+      <line x1="720" y1="20" x2="720" y2="0"/>
+      <line x1="712" y1="4" x2="728" y2="4"/>
+    </g>
+  </svg>
+</section>
+
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat"><div class="num">120+</div><div class="label">Projects Delivered</div></div>
+    <div class="stat"><div class="num">18</div><div class="label">Years on Site</div></div>
+    <div class="stat"><div class="num">0.4%</div><div class="label">Schedule Variance</div></div>
+    <div class="stat"><div class="num">100%</div><div class="label">Client Handover Rate</div></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="dim light">About the Firm</div>
+        <h2 style="font-size:clamp(30px,4.5vw,44px); margin-bottom:22px;">Precision is not<br>an upgrade. It's the job.</h2>
+        <p class="lead">Omalbushra Construction Company was built on a simple standard: measure twice, build once, and never hand over a site you wouldn't move your own family into.</p>
+        <p>We take on residential builds, commercial fit-outs, renovations and ground-up developments — managing everything from permits and structural engineering to the final coat of paint. Every project is run by a dedicated site lead who answers your calls, not a call centre.</p>
+        <p>What sets us apart isn't the size of the crew — it's the size of the tolerance we work within. Level floors. Square corners. Foundations checked against drawings, not guesswork.</p>
+      </div>
+      <div class="spec-panel bracketed">
+        <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+        <div class="mono" style="color:var(--orange); font-size:12px; margin-bottom:20px;">Company Spec Sheet</div>
+        <div class="spec-row"><span>Founded</span><span>2007</span></div>
+        <div class="spec-row"><span>Services</span><span>Residential / Commercial</span></div>
+        <div class="spec-row"><span>Crew</span><span>Licensed &amp; Insured</span></div>
+        <div class="spec-row"><span>Coverage</span><span>Regional &amp; Remote Sites</span></div>
+        <div class="spec-row"><span>Warranty</span><span>Structural, 10-Year</span></div>
+        <div class="spec-row"><span>Reporting</span><span>Weekly Site Updates</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="dim light" style="color:#9FA5AB;">What We Build</div>
+      <h2>Services, itemized.</h2>
+      <p>From the first trench to the final walkthrough — pick a line item, or hand us the whole build.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card bracketed">
+        <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+        <span class="service-num mono">01 / Foundations</span>
+        <svg class="service-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#E1571C" stroke-width="1.6"><path d="M6 30h28M8 30V18l12-9 12 9v12"/><path d="M14 30V20h12v10"/></svg>
+        <h3>Foundations &amp; Groundwork</h3>
+        <p>Excavation, footings and slab work engineered to soil conditions, not assumptions.</p>
+      </div>
+
+      <div class="service-card bracketed">
+        <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+        <span class="service-num mono">02 / Framing</span>
+        <svg class="service-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#E1571C" stroke-width="1.6"><path d="M6 34V10l14-6 14 6v24"/><path d="M6 34h28M20 4v30M6 20h28"/></svg>
+        <h3>Structural Framing</h3>
+        <p>Timber and steel-frame builds raised true and square, verified at every stage.</p>
+      </div>
+
+      <div class="service-card bracketed">
+        <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+        <span class="service-num mono">03 / Renovation</span>
+        <svg class="service-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#E1571C" stroke-width="1.6"><path d="M7 33 27 13l4 4L11 37z"/><path d="M23 9l8 8M4 36l3-6 3 3z"/></svg>
+        <h3>Renovations &amp; Extensions</h3>
+        <p>Additions, remodels and structural upgrades that match — or improve on — what's already there.</p>
+      </div>
+
+      <div class="service-card bracketed">
+        <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+        <span class="service-num mono">04 / Commercial</span>
+        <svg class="service-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#E1571C" stroke-width="1.6"><rect x="8" y="6" width="24" height="30"/><path d="M14 12h4M22 12h4M14 19h4M22 19h4M14 26h4M22 26h4"/></svg>
+        <h3>Commercial Fit-Outs</h3>
+        <p>Offices, retail and light-industrial spaces built around how the business actually runs.</p>
+      </div>
+
+      <div class="service-card bracketed">
+        <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+        <span class="service-num mono">05 / MEP</span>
+        <svg class="service-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#E1571C" stroke-width="1.6"><path d="M8 20h6l3-8 6 16 3-8h6"/></svg>
+        <h3>Electrical &amp; Plumbing</h3>
+        <p>Licensed trades handling wiring, fixtures and water systems to code, first time.</p>
+      </div>
+
+      <div class="service-card bracketed">
+        <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+        <span class="service-num mono">06 / Finishing</span>
+        <svg class="service-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#E1571C" stroke-width="1.6"><path d="M6 34h28"/><path d="M11 34V16l9-10 9 10v18"/><path d="M17 34v-9h6v9"/></svg>
+        <h3>Roofing &amp; Finishing</h3>
+        <p>Roofing, cladding, flooring and final finishes — the details clients actually notice.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="dim">How a Build Runs</div>
+      <h2 style="font-size:clamp(30px,4.5vw,44px);">Four stages. No shortcuts.</h2>
+    </div>
+    <ul class="process-list">
+      <li class="process-item">
+        <span class="pnum">01</span>
+        <div><h4>Site Survey &amp; Quote</h4><p>We walk the site, review drawings or help draft them, and return a fixed, itemized quote — not a ballpark.</p></div>
+      </li>
+      <li class="process-item">
+        <span class="pnum">02</span>
+        <div><h4>Permits &amp; Planning</h4><p>Approvals, scheduling and material orders locked in before a single tool touches the ground.</p></div>
+      </li>
+      <li class="process-item">
+        <span class="pnum">03</span>
+        <div><h4>Build &amp; Report</h4><p>Construction proceeds in stages with weekly progress reports and photos sent directly to you.</p></div>
+      </li>
+      <li class="process-item">
+        <span class="pnum">04</span>
+        <div><h4>Inspection &amp; Handover</h4><p>Final walkthrough, snag list closed out, and a 10-year structural warranty on handover.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="dim light">Get in Touch</div>
+      <h2>Let's plan the build.</h2>
+      <p>Tell us what you're building and where — we'll come back with a straight answer, not a sales script.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card bracketed">
+        <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+        <h3>Contact Details</h3>
+        <div class="contact-line">
+          <span class="k">Email</span>
+          <a class="v" href="mailto:hello@omalbushraconstructioncompany.online">hello@omalbushraconstructioncompany.online</a>
+        </div>
+        <div class="contact-line">
+          <span class="k">Phone</span>
+          <a class="v" href="tel:+000000000000">+00 000 000 0000</a>
+        </div>
+        <div class="contact-line">
+          <span class="k">Office</span>
+          <span class="v">Add your site address here</span>
+        </div>
+        <div class="contact-line">
+          <span class="k">Response Time</span>
+          <span class="v">Within 1 business day</span>
+        </div>
+      </div>
+      <div class="contact-note">
+        <p><strong>Ready to start?</strong> Email us a few lines about the project — location, rough scope, and timeline — and we'll schedule a site visit.</p>
+        <div class="hours-row"><span>Monday – Friday</span><span>7:00 – 17:00</span></div>
+        <div class="hours-row"><span>Saturday</span><span>8:00 – 13:00</span></div>
+        <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
+        <a href="mailto:hello@omalbushraconstructioncompany.online" class="btn btn-primary" style="margin-top:26px; background:var(--charcoal); color:var(--cream);">Email Us Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="logo">
+        <div class="logo-mark">OB</div>
+        <div class="logo-text" style="color:var(--cream);">Omalbushra<span>Construction Co.</span></div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#privacy">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Omalbushra Construction Company. All rights reserved.</span>
+      <span>hello@omalbushraconstructioncompany.online</span>
+    </div>
+  </div>
+</footer>
+
+<section id="privacy">
+  <div class="wrap">
+    <a href="#home" class="back-link">&larr; Back to Home</a>
+    <h2>Privacy Policy</h2>
+    <span class="updated">Last updated — 19 August 2026</span>
+
+    <p>Omalbushra Construction Company ("we," "us," "our") respects your privacy. This policy explains what information we collect through this website, how we use it, and the choices you have.</p>
+
+    <h3>Information We Collect</h3>
+    <ul>
+      <li>Contact details you provide directly, such as your name, email address, phone number or project details, when you email us or fill out a form.</li>
+      <li>Basic technical data such as browser type and pages visited, collected automatically to help us maintain the site.</li>
+    </ul>
+
+    <h3>How We Use Your Information</h3>
+    <ul>
+      <li>To respond to quote requests and project inquiries.</li>
+      <li>To schedule site visits and communicate about ongoing or upcoming work.</li>
+      <li>To improve this website and understand how visitors use it.</li>
+    </ul>
+
+    <h3>How We Protect Your Information</h3>
+    <p>We do not sell or rent your personal information to third parties. Information you send us is used solely to respond to your inquiry and manage our working relationship with you.</p>
+
+    <h3>Third-Party Services</h3>
+    <p>This site may use standard hosting and analytics services to keep the site running and secure. These providers may process limited technical data on our behalf, under their own privacy terms.</p>
+
+    <h3>Your Rights</h3>
+    <p>You may ask us at any time what personal information we hold about you, request that we correct it, or request that we delete it, by emailing us at <a href="mailto:hello@omalbushraconstructioncompany.online" style="color:var(--orange);">hello@omalbushraconstructioncompany.online</a>.</p>
+
+    <h3>Changes to This Policy</h3>
+    <p>We may update this policy from time to time. Changes will be posted on this page with an updated revision date.</p>
+
+    <h3>Contact Us</h3>
+    <p>Questions about this policy can be sent to <a href="mailto:hello@omalbushraconstructioncompany.online" style="color:var(--orange);">hello@omalbushraconstructioncompany.online</a>.</p>
+  </div>
+</section>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+  });
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
